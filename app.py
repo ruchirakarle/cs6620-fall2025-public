@@ -141,14 +141,13 @@ def serve_audio_segment():
         app.logger.error(f"Error extracting audio segment: {e}")
         return f"Error extracting audio segment: {str(e)}", 500
 
-@app.route('/')
-def index():
-    """
-    Renders the main HTML page for the client-side audio player.
-    Version 2.0 - Automated Deployment via GitHub Actions + AWS SSM
-    """
-    from datetime import datetime
-    return render_template('index.html')
+@@app.route('/deployment-info')
+def deployment_info():
+    return {
+        'version': '2.0',
+        'deployment_method': 'GitHub Actions + AWS SSM',
+        'build_date': datetime.now().isoformat()
+    }
 
 @app.route('/version')
 def version():
