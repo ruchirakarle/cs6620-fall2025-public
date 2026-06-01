@@ -582,6 +582,14 @@ def auto_load_data():
         except Exception as e:
             app.logger.error(f"Failed to auto-load CSV: {e}")
 
+@app.route('/version')
+def version():
+    return {
+        'version': '2.0',
+        'deployment_method': 'GitHub Actions + AWS SSM',
+        'build_date': datetime.now().isoformat()
+    }
+
 
 if __name__ == '__main__':
     # Auto-load CSV and audio files on startup
